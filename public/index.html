@@ -299,5 +299,25 @@
                 },
             });
         </script>
-    </body>
+
+        <!-- Remove Emergent Badge -->
+<script>
+  (function() {
+    function removeBadge() {
+      const badge = document.getElementById('emergent-badge');
+      if (badge) {
+        badge.remove();
+      }
+      document.querySelectorAll('a[href*="emergent.sh"]').forEach(function(el) {
+        el.remove();
+      });
+    }
+    removeBadge();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', removeBadge);
+    }
+    window.addEventListener('load', removeBadge);
+  })();
+</script>
+</body>
 </html>
