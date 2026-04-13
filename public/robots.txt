@@ -1,0 +1,11 @@
+# Maharya - Sustainable Leather Accessories Manufacturing
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://landing.maharya.com/sitemap.xml
+
+# Crawl-delay (optional - be nice to the server)
+Crawl-delay: 1
