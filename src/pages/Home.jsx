@@ -30,19 +30,26 @@ const Home = () => {
     e.preventDefault();
     
     try {
-      // Send to Vercel serverless function
-      const response = await fetch('/api/contact', {
+      // Send to Formspree (free email service)
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          service: formData.service,
+          message: formData.message,
+          _replyto: formData.email,
+          _subject: `New Contact Form Submission from ${formData.name}`,
+        }),
       });
 
-      const data = await response.json();
-
       if (response.ok) {
-        toast.success(data.message || 'Thank you! We will contact you shortly.');
+        toast.success('Thank you! We will contact you shortly.');
         // Reset form
         setFormData({
           name: '',
@@ -53,11 +60,11 @@ const Home = () => {
           message: ''
         });
       } else {
-        toast.error(data.error || 'Failed to send message. Please try again.');
+        toast.error('Failed to send message. Please email us directly at walletsplus@gmail.com');
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      toast.error('Failed to send message. Please try again.');
+      toast.error('Failed to send message. Please email us directly at walletsplus@gmail.com');
     }
   };
 
