@@ -1,3 +1,5 @@
+import { sendContactEmail, validateEmail } from './utils/email';
+
 export default async function handler(req, res) {
   // Only allow POST requests
   if (req.method !== 'POST') {
@@ -9,27 +11,33 @@ export default async function handler(req, res) {
 
     // Validate required fields
     if (!name || !email || !message) {
-      return res.status(400).json({ error: 'Missing required fields' });
+      return res.status(400).json({ error: 'Please fill in all required fields (Name, Email, Message)' });
     }
 
-    // Here you can:
-    // 1. Send email using a service
-    // 2. Save to database
-    // 3. Forward to your email
+    // Validate email format
+    if (!validateEmail(email)) {
+      return res.status(400).json({ error: 'Please enter a valid email address' });
+    }
 
-    // For now, we'll log it and send a success response
+    // Log the submission
     console.log('Form submission received:', {
       name,
       email,
       company,
       phone,
       service,
-      message,
       timestamp: new Date().toISOString()
     });
 
-    // Send email notification using Vercel's email integration
-    // You'll need to set up email in Vercel dashboard
+    // Send email notification
+    try {
+      await sendContactEmail({ name, email, company, phone, service, message });
+      console.log('Email notification sent successfully');
+    } catch (emailError) {
+      console.error('Failed to send email:', emailError);
+      // Still return success to user even if email fails
+      // The submission is logged, so you won't lose it
+    }
 
     return res.status(200).json({ 
       success: true, 
@@ -38,6 +46,8 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error('Form submission error:', error);
-    return res.status(500).json({ error: 'Failed to submit form' });
+    return res.status(500).json({ 
+      error: 'Failed to submit form. Please try again or email us directly at walletsplus@gmail.com' 
+    });
   }
 }

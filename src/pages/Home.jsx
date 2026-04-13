@@ -75,7 +75,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <img 
+              <img loading="lazy" 
                 src="https://cdn.prod.website-files.com/66892da993ba92c0c571f33e/668963c28457c4eea62ab8fa_maharya%20logo.svg"
                 alt="Maharya"
                 className="h-8 md:h-10"
@@ -100,10 +100,12 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden mt-20">
         <div className="absolute inset-0 z-0">
-          <img 
+          <img loading="lazy" 
             src="https://images.pexels.com/photos/4452610/pexels-photo-4452610.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
             alt="Leather craftsmanship"
             className="w-full h-full object-cover"
+            loading="eager"
+            fetchpriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-stone-900/90 to-stone-800/70"></div>
         </div>
@@ -189,7 +191,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="border-stone-200 hover:shadow-xl transition-shadow">
               <CardContent className="p-8">
-                <img 
+                <img loading="lazy" 
                   src="https://images.unsplash.com/photo-1534126511673-b6899657816a"
                   alt="Sustainable leather craftsmanship with eco-friendly practices"
                   className="w-full h-48 object-cover rounded-lg mb-6"
@@ -203,7 +205,7 @@ const Home = () => {
 
             <Card className="border-stone-200 hover:shadow-xl transition-shadow">
               <CardContent className="p-8">
-                <img 
+                <img loading="lazy" 
                   src="https://images.unsplash.com/photo-1660980041852-230420b8f99f"
                   alt="Certified sustainable manufacturing facility"
                   className="w-full h-48 object-cover rounded-lg mb-6"
@@ -217,7 +219,7 @@ const Home = () => {
 
             <Card className="border-stone-200 hover:shadow-xl transition-shadow">
               <CardContent className="p-8">
-                <img 
+                <img loading="lazy" 
                   src="https://images.unsplash.com/photo-1599694522028-65abc96dfd2f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzZ8MHwxfHNlYXJjaHwzfHxsZWF0aGVyJTIwZ29vZHMlMjBxdWFsaXR5JTIwY29udHJvbCUyMGluc3BlY3Rpb24lMjBkZXRhaWx8ZW58MHx8fHwxNzc2MDY2OTMxfDA&ixlib=rb-4.1.0&q=85"
                   alt="Sustainable quality control process - leather inspection"
                   className="w-full h-48 object-cover rounded-lg mb-6"
@@ -246,7 +248,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div className="relative group overflow-hidden rounded-lg">
-              <img 
+              <img loading="lazy" 
                 src="https://images.unsplash.com/photo-1517612228538-cefdbc2c01e7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwzfHxsZWF0aGVyJTIwYnJpZWZjYXNlJTIwd29yayUyMGJhZyUyMHByb2Zlc3Npb25hbCUyMHByb2R1Y3R8ZW58MHx8fHwxNzc2MDY3NDg1fDA&ixlib=rb-4.1.0&q=85"
                 alt="Sustainable leather business bags - eco-friendly manufacturing"
                 className="w-full h-80 object-cover transition-transform group-hover:scale-105"
@@ -257,7 +259,7 @@ const Home = () => {
             </div>
 
             <div className="relative group overflow-hidden rounded-lg">
-              <img 
+              <img loading="lazy" 
                 src="https://images.unsplash.com/photo-1531190260877-c8d11eb5afaf?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDB8MHwxfHNlYXJjaHw0fHxicm93biUyMGxlYXRoZXIlMjB3YWxsZXQlMjBiaWZvbGQlMjBwcm9kdWN0JTIwc2hvdHxlbnwwfHx8fDE3NzYwNjc1NTd8MA&ixlib=rb-4.1.0&q=85"
                 alt="Sustainable leather wallets and small goods"
                 className="w-full h-80 object-cover transition-transform group-hover:scale-105"
@@ -268,7 +270,7 @@ const Home = () => {
             </div>
 
             <div className="relative group overflow-hidden rounded-lg">
-              <img 
+              <img loading="lazy" 
                 src="https://images.unsplash.com/photo-1664286074176-5206ee5dc878?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHwxfHxsZWF0aGVyJTIwYmVsdHxlbnwwfHx8fDE3NzYwNjcwOTZ8MA&ixlib=rb-4.1.0&q=85"
                 alt="Sustainable leather belts and accessories"
                 className="w-full h-80 object-cover transition-transform group-hover:scale-105"
@@ -548,7 +550,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
-              <img 
+              <img loading="lazy" 
                 src="https://cdn.prod.website-files.com/66892da993ba92c0c571f33e/668963c28457c4eea62ab8fa_maharya%20logo.svg"
                 alt="Maharya"
                 className="h-8 mb-4 brightness-0 invert"
@@ -590,6 +592,11 @@ const Home = () => {
 
           <div className="border-t border-stone-800 pt-8 text-center text-stone-400">
             <p>&copy; 2026 Maharya Inc. All rights reserved. | WRAP • C-TPAT • SEDEX • ISO Certified</p>
+            <p className="mt-2">
+              <a href="https://www.maharya.com" target="_blank" rel="noopener noreferrer" className="text-stone-400 hover:text-amber-700 transition-colors">
+                www.maharya.com
+              </a>
+            </p>
           </div>
         </div>
       </footer>
