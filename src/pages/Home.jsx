@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Input } from '../components/ui/input';
@@ -12,11 +13,15 @@ import {
   ShieldCheck,
   Phone,
   Mail,
-  MapPin
+  MapPin,
+  Menu,
+  X
 } from 'lucide-react';
 import { toast } from 'sonner';
 
 const Home = () => {
+  const [state, handleSubmit] = useForm('mjgjvven');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,47 +31,25 @@ const Home = () => {
     message: ''
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    try {
-      // Send to Formspree (free email service)
-      const response = await fetch('https://formspree.io/f/mjgjvven', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          phone: formData.phone,
-          service: formData.service,
-          message: formData.message,
-          _replyto: formData.email,
-          _subject: `New Contact Form Submission from ${formData.name}`,
-        }),
+  React.useEffect(() => {
+    if (state.succeeded) {
+      toast.success('Thank you! We will contact you shortly.');
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        service: '',
+        message: ''
       });
+    }
+  }, [state.succeeded]);
 
-      if (response.ok) {
-        toast.success('Thank you! We will contact you shortly.');
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          company: '',
-          phone: '',
-          service: '',
-          message: ''
-        });
-      } else {
-        toast.error('Failed to send message. Please email us directly at walletsplus@gmail.com');
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
+  React.useEffect(() => {
+    if (state.errors && state.errors.length > 0) {
       toast.error('Failed to send message. Please email us directly at walletsplus@gmail.com');
     }
-  };
+  }, [state.errors]);
 
   const handleChange = (e) => {
     setFormData({
@@ -77,42 +60,101 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
       <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-stone-200 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <img loading="lazy" 
-                src="https://cdn.prod.website-files.com/66892da993ba92c0c571f33e/668963c28457c4eea62ab8fa_maharya%20logo.svg"
-                alt="Maharya"
-                className="h-8 md:h-10"
-              />
+              <a href="https://www.maharya.com" target="_blank" rel="noopener noreferrer">
+                <img loading="lazy" 
+                  src="https://cdn.prod.website-files.com/66892da993ba92c0c571f33e/668963c28457c4eea62ab8fa_maharya%20logo.svg"
+                  alt="Maharya"
+                  className="h-8 md:h-10"
+                />
+              </a>
             </div>
+            
             <nav className="hidden md:flex space-x-8">
               <a href="#manufacturing" className="text-stone-700 hover:text-stone-900 transition-colors">Manufacturing</a>
               <a href="#capabilities" className="text-stone-700 hover:text-stone-900 transition-colors">Capabilities</a>
               <a href="#why-us" className="text-stone-700 hover:text-stone-900 transition-colors">Why Us</a>
               <a href="#contact" className="text-stone-700 hover:text-stone-900 transition-colors">Contact</a>
             </nav>
-            <a href="tel:+1-917-730-4220" className="hidden md:block">
-              <Button className="bg-amber-700 hover:bg-amber-800 text-white">
-                <Phone className="w-4 h-4 mr-2" />
-                +1-917-730-4220
-              </Button>
-            </a>
+            
+            <div className="flex items-center gap-4">
+              <a href="tel:+1-917-730-4220" className="hidden md:block">
+                <Button className="bg-amber-700 hover:bg-amber-800 text-white">
+                  <Phone className="w-4 h-4 mr-2" />
+                  +1-917-730-4220
+                </Button>
+              </a>
+              
+              <button 
+                className="md:hidden p-2"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-6 h-6 text-stone-700" />
+                ) : (
+                  <Menu className="w-6 h-6 text-stone-700" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
+        
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-t border-stone-200">
+            <nav className="px-4 py-4 space-y-3">
+              <a 
+                href="#manufacturing" 
+                className="block py-2 text-stone-700 hover:text-stone-900 font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Manufacturing
+              </a>
+              <a 
+                href="#capabilities" 
+                className="block py-2 text-stone-700 hover:text-stone-900 font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Capabilities
+              </a>
+              <a 
+                href="#why-us" 
+                className="block py-2 text-stone-700 hover:text-stone-900 font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Why Us
+              </a>
+              <a 
+                href="#contact" 
+                className="block py-2 text-stone-700 hover:text-stone-900 font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </a>
+              <a href="tel:+1-917-730-4220" className="block">
+                <Button className="w-full bg-amber-700 hover:bg-amber-800 text-white mt-2">
+                  <Phone className="w-4 h-4 mr-2" />
+                  +1-917-730-4220
+                </Button>
+              </a>
+            </nav>
+          </div>
+        )}
       </header>
 
-      {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden mt-20">
         <div className="absolute inset-0 z-0">
-          <img loading="lazy" 
-            src="https://images.pexels.com/photos/4452610/pexels-photo-4452610.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+          <img 
+            src="https://images.pexels.com/photos/4452610/pexels-photo-4452610.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop&q=60"
             alt="Leather craftsmanship"
             className="w-full h-full object-cover"
             loading="eager"
             fetchpriority="high"
+            width="1920"
+            height="1080"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-stone-900/90 to-stone-800/70"></div>
         </div>
@@ -138,7 +180,6 @@ const Home = () => {
             </a>
           </div>
           
-          {/* Trust Badges */}
           <div className="mt-12 flex flex-wrap justify-center gap-8 items-center">
             <div className="text-white text-center">
               <p className="text-sm font-semibold mb-1">WRAP Certified</p>
@@ -156,7 +197,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
       <section className="py-16 bg-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -180,7 +220,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Manufacturing Services */}
       <section id="manufacturing" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -199,9 +238,11 @@ const Home = () => {
             <Card className="border-stone-200 hover:shadow-xl transition-shadow">
               <CardContent className="p-8">
                 <img loading="lazy" 
-                  src="https://images.unsplash.com/photo-1534126511673-b6899657816a"
+                  src="https://images.unsplash.com/photo-1534126511673-b6899657816a?w=800&h=600&q=75&auto=format&fit=crop"
                   alt="Sustainable leather craftsmanship with eco-friendly practices"
                   className="w-full h-48 object-cover rounded-lg mb-6"
+                  width="800"
+                  height="600"
                 />
                 <h3 className="text-2xl font-bold text-stone-800 mb-4">Eco-Friendly Craftsmanship</h3>
                 <p className="text-stone-600 leading-relaxed">
@@ -213,9 +254,11 @@ const Home = () => {
             <Card className="border-stone-200 hover:shadow-xl transition-shadow">
               <CardContent className="p-8">
                 <img loading="lazy" 
-                  src="https://images.unsplash.com/photo-1660980041852-230420b8f99f"
+                  src="https://images.unsplash.com/photo-1660980041852-230420b8f99f?w=800&h=600&q=75&auto=format&fit=crop"
                   alt="Certified sustainable manufacturing facility"
                   className="w-full h-48 object-cover rounded-lg mb-6"
+                  width="800"
+                  height="600"
                 />
                 <h3 className="text-2xl font-bold text-stone-800 mb-4">Certified Green Facility</h3>
                 <p className="text-stone-600 leading-relaxed">
@@ -227,9 +270,11 @@ const Home = () => {
             <Card className="border-stone-200 hover:shadow-xl transition-shadow">
               <CardContent className="p-8">
                 <img loading="lazy" 
-                  src="https://images.unsplash.com/photo-1599694522028-65abc96dfd2f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzZ8MHwxfHNlYXJjaHwzfHxsZWF0aGVyJTIwZ29vZHMlMjBxdWFsaXR5JTIwY29udHJvbCUyMGluc3BlY3Rpb24lMjBkZXRhaWx8ZW58MHx8fHwxNzc2MDY2OTMxfDA&ixlib=rb-4.1.0&q=85"
+                  src="https://images.unsplash.com/photo-1599694522028-65abc96dfd2f?w=800&h=600&q=75&auto=format&fit=crop"
                   alt="Sustainable quality control process - leather inspection"
                   className="w-full h-48 object-cover rounded-lg mb-6"
+                  width="800"
+                  height="600"
                 />
                 <h3 className="text-2xl font-bold text-stone-800 mb-4">Ethical Quality Assurance</h3>
                 <p className="text-stone-600 leading-relaxed">
@@ -241,7 +286,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Product Capabilities */}
       <section id="capabilities" className="py-20 bg-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -256,9 +300,11 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div className="relative group overflow-hidden rounded-lg">
               <img loading="lazy" 
-                src="https://images.unsplash.com/photo-1517612228538-cefdbc2c01e7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwzfHxsZWF0aGVyJTIwYnJpZWZjYXNlJTIwd29yayUyMGJhZyUyMHByb2Zlc3Npb25hbCUyMHByb2R1Y3R8ZW58MHx8fHwxNzc2MDY3NDg1fDA&ixlib=rb-4.1.0&q=85"
+                src="https://images.unsplash.com/photo-1517612228538-cefdbc2c01e7?w=900&h=1000&q=75&auto=format&fit=crop"
                 alt="Sustainable leather business bags - eco-friendly manufacturing"
                 className="w-full h-80 object-cover transition-transform group-hover:scale-105"
+                width="900"
+                height="1000"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 to-transparent flex items-end p-6">
                 <h3 className="text-2xl font-bold text-white">Business Bags</h3>
@@ -267,9 +313,11 @@ const Home = () => {
 
             <div className="relative group overflow-hidden rounded-lg">
               <img loading="lazy" 
-                src="https://images.unsplash.com/photo-1531190260877-c8d11eb5afaf?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDB8MHwxfHNlYXJjaHw0fHxicm93biUyMGxlYXRoZXIlMjB3YWxsZXQlMjBiaWZvbGQlMjBwcm9kdWN0JTIwc2hvdHxlbnwwfHx8fDE3NzYwNjc1NTd8MA&ixlib=rb-4.1.0&q=85"
+                src="https://images.unsplash.com/photo-1531190260877-c8d11eb5afaf?w=900&h=1000&q=75&auto=format&fit=crop"
                 alt="Sustainable leather wallets and small goods"
                 className="w-full h-80 object-cover transition-transform group-hover:scale-105"
+                width="900"
+                height="1000"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 to-transparent flex items-end p-6">
                 <h3 className="text-2xl font-bold text-white">Wallets & Small Goods</h3>
@@ -278,9 +326,11 @@ const Home = () => {
 
             <div className="relative group overflow-hidden rounded-lg">
               <img loading="lazy" 
-                src="https://images.unsplash.com/photo-1664286074176-5206ee5dc878?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHwxfHxsZWF0aGVyJTIwYmVsdHxlbnwwfHx8fDE3NzYwNjcwOTZ8MA&ixlib=rb-4.1.0&q=85"
+                src="https://images.unsplash.com/photo-1664286074176-5206ee5dc878?w=900&h=1000&q=75&auto=format&fit=crop"
                 alt="Sustainable leather belts and accessories"
                 className="w-full h-80 object-cover transition-transform group-hover:scale-105"
+                width="900"
+                height="1000"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 to-transparent flex items-end p-6">
                 <h3 className="text-2xl font-bold text-white">Belts & Accessories</h3>
@@ -306,7 +356,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Why Choose Maharya */}
       <section id="why-us" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -394,7 +443,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="py-20 bg-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -540,9 +588,10 @@ const Home = () => {
 
                     <Button 
                       type="submit" 
-                      className="w-full bg-amber-700 hover:bg-amber-800 text-white py-6 text-lg"
+                      disabled={state.submitting}
+                      className="w-full bg-amber-700 hover:bg-amber-800 text-white py-6 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Send Message
+                      {state.submitting ? 'Sending...' : 'Send Message'}
                     </Button>
                   </form>
                 </CardContent>
@@ -552,16 +601,17 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-stone-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
-              <img loading="lazy" 
-                src="https://cdn.prod.website-files.com/66892da993ba92c0c571f33e/668963c28457c4eea62ab8fa_maharya%20logo.svg"
-                alt="Maharya"
-                className="h-8 mb-4 brightness-0 invert"
-              />
+              <a href="https://www.maharya.com" target="_blank" rel="noopener noreferrer">
+                <img loading="lazy" 
+                  src="https://cdn.prod.website-files.com/66892da993ba92c0c571f33e/668963c28457c4eea62ab8fa_maharya%20logo.svg"
+                  alt="Maharya"
+                  className="h-8 mb-4 brightness-0 invert"
+                />
+              </a>
               <p className="text-stone-400">
                 Premium leather accessories manufacturer serving global brands since 1999.
               </p>
@@ -612,3 +662,12 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+
+
+
+
+
+
