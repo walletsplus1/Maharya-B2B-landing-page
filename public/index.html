@@ -135,29 +135,36 @@
         }
         </script>
         
-        <!-- Structured Data - Product Schema -->
+        <!-- Structured Data - Service Schema (B2B Manufacturing) -->
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
-          "@type": "Product",
-          "name": "Sustainable Leather Accessories Manufacturing Services",
-          "description": "B2B sustainable leather manufacturing for handbags, wallets, belts, and accessories. Eco-friendly vegetable-tanned leather with ethical production.",
-          "brand": {
-            "@type": "Brand",
-            "name": "Maharya"
+          "@type": "Service",
+          "serviceType": "Sustainable Leather Accessories Manufacturing",
+          "name": "B2B Sustainable Leather Manufacturing Services",
+          "description": "Professional B2B sustainable leather manufacturing for handbags, wallets, belts, and accessories. Eco-friendly vegetable-tanned leather with ethical production practices. WRAP, C-TPAT, ISO certified facility.",
+          "provider": {
+            "@type": "Organization",
+            "name": "Maharya Inc.",
+            "url": "https://www.maharya.com",
+            "telephone": "+1-917-730-4220"
           },
-          "category": "Sustainable Manufacturing",
-          "additionalProperty": [
-            {
-              "@type": "PropertyValue",
-              "name": "Production Capacity",
-              "value": "30,000+ units per month"
-            },
-            {
-              "@type": "PropertyValue",
-              "name": "Experience",
-              "value": "27+ years"
-            },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "127",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": "5.00",
+            "highPrice": "500.00",
+            "availability": "https://schema.org/InStock"
+          }
+        }
+        </script>
             {
               "@type": "PropertyValue",
               "name": "Sustainability",
