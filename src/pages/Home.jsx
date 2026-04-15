@@ -326,14 +326,14 @@ const Home = () => {
 
             <div className="relative group overflow-hidden rounded-lg">
               <img loading="lazy" 
-                src="https://images.unsplash.com/photo-1664286074176-5206ee5dc878?w=900&h=1000&q=75&auto=format&fit=crop"
+                src="https://customer-assets.emergentagent.com/job_maharya-b2b/artifacts/40bempoh_LA_WPB1010_LIF3_BROWN_WR.jpg"
                 alt="Sustainable leather belts and accessories"
                 className="w-full h-80 object-cover transition-transform group-hover:scale-105"
                 width="900"
                 height="1000"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 to-transparent flex items-end p-6">
-                <h3 className="text-2xl font-bold text-white">Belts & Accessories</h3>
+              <h3 className="text-2xl font-bold text-white">Belts & Corporate Gifting</h3>
               </div>
             </div>
           </div>
