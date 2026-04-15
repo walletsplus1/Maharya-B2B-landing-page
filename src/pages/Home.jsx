@@ -135,7 +135,8 @@ const Home = () => {
                 Contact
               </a>
               <a href="tel:+1-917-730-4220" className="block">
-                <Button className="w-full bg-amber-700 hover:bg-amber-800 text-white mt-2">
+                <Button className="bg-[#7B3F00] hover:bg-[#5A2F00] text-white">
+
                   <Phone className="w-4 h-4 mr-2" />
                   +1-917-730-4220
                 </Button>
@@ -169,7 +170,7 @@ const Home = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#contact">
-              <Button size="lg" className="bg-amber-700 hover:bg-amber-800 text-white text-lg px-8 py-6">
+              <Button size="lg" className="bg-[#7B3F00] hover:bg-[#5A2F00] text-white text-lg px-8 py-6">
                 Request a Quote
               </Button>
             </a>
@@ -589,7 +590,7 @@ const Home = () => {
                     <Button 
                       type="submit" 
                       disabled={state.submitting}
-                      className="w-full bg-amber-700 hover:bg-amber-800 text-white py-6 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                     className="w-full bg-[#7B3F00] hover:bg-[#5A2F00] text-white py-6 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {state.submitting ? 'Sending...' : 'Send Message'}
                     </Button>
