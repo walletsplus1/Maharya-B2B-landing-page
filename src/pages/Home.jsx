@@ -254,15 +254,15 @@ const Home = () => {
             <Card className="border-stone-200 hover:shadow-xl transition-shadow">
               <CardContent className="p-8">
                 <img loading="lazy" 
-                  src="https://images.unsplash.com/photo-1660980041852-230420b8f99f?w=800&h=600&q=75&auto=format&fit=crop"
-                  alt="Certified sustainable manufacturing facility"
+                  src="https://customer-assets.emergentagent.com/job_maharya-b2b/artifacts/hvbhx1tx_Factory%20Images_Women%20work%20force_Far%20view.png"
+                  alt="Skilled production team delivering precision manufacturing"
                   className="w-full h-48 object-cover rounded-lg mb-6"
                   width="800"
                   height="600"
                 />
-                <h3 className="text-2xl font-bold text-stone-800 mb-4">Certified Green Facility</h3>
+                <h3 className="text-2xl font-bold text-stone-800 mb-4">Skilled Production</h3>
                 <p className="text-stone-600 leading-relaxed">
-                  10,000 sq ft WRAP, C-TPAT, SEDEX & ISO certified factory with energy-efficient German and Italian equipment.
+                  A trained workforce delivering precision and consistency at scale. Designed to meet global standards and repeat orders.
                 </p>
               </CardContent>
             </Card>
