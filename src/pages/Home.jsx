@@ -300,7 +300,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div className="relative group overflow-hidden rounded-lg">
               <img loading="lazy" 
-                src="https://images.unsplash.com/photo-1517612228538-cefdbc2c01e7?w=900&h=1000&q=75&auto=format&fit=crop"
+               src="https://customer-assets.emergentagent.com/job_maharya-b2b/artifacts/p3mvxw96_MB_5694_LIF3_WR_BLACK.jpg"
                 alt="Sustainable leather business bags - eco-friendly manufacturing"
                 className="w-full h-80 object-cover transition-transform group-hover:scale-105"
                 width="900"
