@@ -1,21 +1,21 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-29C4Y8XN9Y"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-29C4Y8XN9Y');
-</script>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#b45309" />
-
+        
         <!-- Google Search Console Verification -->
-<meta name="google-site-verification" content="5y2GHTq9kYk3pSPrdVJblLgTP1gmoh1k-1jiMrqVloI" />
+        <meta name="google-site-verification" content="5y2GHTq9kYk3pSPrdVJblLgTP1gmoh1k-1jiMrqVloI" />
+        
+        <!-- Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-29C4Y8XN9Y"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-29C4Y8XN9Y');
+        </script>
         
         <!-- Performance optimizations -->
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
@@ -51,8 +51,8 @@
         <meta name="ICBM" content="42.6526, -73.7562" />
         
         <!-- Language Alternatives -->
-       <link rel="alternate" hreflang="en" href="https://landing.maharya.com/" />
-       <link rel="alternate" hreflang="x-default" href="https://landing.maharya.com/" />
+        <link rel="alternate" hreflang="en" href="https://landing.maharya.com/" />
+        <link rel="alternate" hreflang="x-default" href="https://landing.maharya.com/" />
         
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -148,36 +148,66 @@
             "name": "Maharya Inc.",
             "url": "https://www.maharya.com",
             "telephone": "+1-917-730-4220",
-"address": {
- "@type": "PostalAddress",
-"streetAddress": "418 Broadway #6782",
-"addressLocality": "Albany",
-"addressRegion": "NY",
-"postalCode": "12207",
-"addressCountry": "US"
-},
-
-"aggregateRating": {
-  "@type": "AggregateRating",
-  "ratingValue": "4.8",
-  "reviewCount": "127",
-  "bestRating": "5",
-  "worstRating": "1"
-}
-           
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "418 Broadway #6782",
+              "addressLocality": "Albany",
+              "addressRegion": "NY",
+              "postalCode": "12207",
+              "addressCountry": "US"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.8",
+              "reviewCount": "127",
+              "bestRating": "5",
+              "worstRating": "1"
+            }
+          },
+          "areaServed": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+              "@type": "GeoCoordinates",
+              "latitude": "42.6526",
+              "longitude": "-73.7562"
+            },
+            "geoRadius": "20000000"
+          },
           "offers": {
             "@type": "AggregateOffer",
             "priceCurrency": "USD",
             "lowPrice": "5.00",
             "highPrice": "500.00",
-            "availability": "https://schema.org/InStock"
-          }
-        }
-        </script>
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "Varies",
+              "priceCurrency": "USD"
+            },
+            "availability": "https://schema.org/InStock",
+            "url": "https://www.maharya.com",
+            "validFrom": "1999-01-01"
+          },
+          "category": "Sustainable Manufacturing",
+          "additionalProperty": [
+            {
+              "@type": "PropertyValue",
+              "name": "Production Capacity",
+              "value": "30,000+ units per month"
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "Experience",
+              "value": "27+ years in sustainable leather manufacturing"
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "Certifications",
+              "value": "WRAP, C-TPAT, SEDEX SMETA, ISO 9001/45001"
+            },
             {
               "@type": "PropertyValue",
               "name": "Sustainability",
-              "value": "Vegetable-tanned leather, Fair trade certified"
+              "value": "Vegetable-tanned leather, Fair trade certified, Eco-friendly practices"
             }
           ]
         }
@@ -315,25 +345,17 @@
                 },
             });
         </script>
-
-        <!-- Remove Emergent Badge -->
-<script>
-  (function() {
-    function removeBadge() {
-      const badge = document.getElementById('emergent-badge');
-      if (badge) {
-        badge.remove();
-      }
-      document.querySelectorAll('a[href*="emergent.sh"]').forEach(function(el) {
-        el.remove();
-      });
-    }
-    removeBadge();
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', removeBadge);
-    }
-    window.addEventListener('load', removeBadge);
-  })();
-</script>
-</body>
+        
+        <!-- Hide Emergent Badge -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const badge = document.getElementById('emergent-badge');
+                if (badge) {
+                    badge.style.display = 'none !important';
+                    badge.style.visibility = 'hidden !important';
+                    badge.style.opacity = '0 !important';
+                }
+            });
+        </script>
+    </body>
 </html>
